@@ -7,21 +7,72 @@
 # Initial Investment = Purchase Price + Closing Costs + Renovation Costs
 
 class RentalProperty:
-    def __init__(self, purchase_price, closing_costs, renovation_costs, rental_income, total_expenses):
-        pass
+    def __init__(self):
+        self.purchase_price = 0
+        self.closing_costs = 0
+        self.renovation_costs = 0
+        self.rental_income = 0
+        self.additional_income = 0
+        self.expenses = {}
+        self.down_payment = 0
+        self.rehab_budget = 0
+        self.misc_budget = 0
+
+    def get_user_input(self):
+        self.purchase_price = float(input("Enter the purchase price: "))
+        self.closing_costs = float(input("Enter the closing costs: "))
+        self.renovation_costs = float(input("Enter the renovation costs: "))
+        self.rental_income = float(input("Enter the rental income: "))
+        self.additional_income = float(input("Enter any additional income (e.g., laundry, parking): "))
+
+        self.expenses['tax'] = float(input("Enter monthly tax expenses: "))
+        self.expenses['insurance'] = float(input("Enter monthly insurance expenses: "))
+        self.expenses['utilities'] = float(input("Enter monthly utilities expenses: "))
+        self.expenses['hoa'] = float(input("Enter monthly HOA expenses: "))
+        self.expenses['vacancy'] = float(input("Enter monthly vacancy expenses: "))
+        self.expenses['repairs'] = float(input("Enter monthly repairs expenses: "))
+        self.expenses['capital_expenditures'] = float(input("Enter monthly capital expenditures expenses: "))
+        self.expenses['property_management'] = float(input("Enter monthly property management expenses: "))
+        self.expenses['mortgage'] = float(input("Enter monthly mortgage expenses: "))
+
+        self.down_payment = float(input("Enter the down payment amount: "))
+        self.rehab_budget = float(input("Enter the rehab budget: "))
+        self.misc_budget = float(input("Enter the miscellaneous budget: "))
 
     def calculate_net_profit(self):
-        pass
+        total_income = self.rental_income + self.additional_income
+        total_expenses = sum(self.expenses.values())
+        return total_income - total_expenses
 
     def calculate_initial_investment(self):
-        pass
+        return self.purchase_price + self.closing_costs + self.renovation_costs + self.down_payment + self.rehab_budget + self.misc_budget
 
     def calculate_roi(self):
-        pass
+        net_profit = self.calculate_net_profit()
+        initial_investment = self.calculate_initial_investment()
 
         if initial_investment == 0:
             return 0
 
         roi = (net_profit / initial_investment) * 100
         return roi
+
+    def calculate_monthly_cash_flow(self):
+        total_income = self.rental_income + self.additional_income
+        total_expenses = sum(self.expenses.values())
+        return total_income - total_expenses
+
+    def calculate_annual_cash_flow(self):
+        return self.calculate_monthly_cash_flow() * 12
+
+    def calculate_cash_on_cash_roi(self):
+        annual_cash_flow = self.calculate_annual_cash_flow()
+        total_investment = self.calculate_initial_investment()
+
+        if total_investment == 0:
+            return 0
+
+        coc_roi = (annual_cash_flow / total_investment) * 100
+        return coc_roi
+
 
