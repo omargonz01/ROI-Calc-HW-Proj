@@ -93,7 +93,7 @@ class RentalProperty:
         return coc_roi
 
 
-# now you can create instance of the class and call the methods
+# next create instance of the class and call the methods
 property1 = RentalProperty()
 property1.get_monthly_income()
 property1.get_monthly_expenses()
